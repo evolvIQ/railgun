@@ -1,0 +1,6 @@
+site:
+    clusters:
+        CoreOS-alpha:
+            type: ec2
+            xx: 3
+        

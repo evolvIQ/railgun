@@ -1,0 +1,12 @@
+base:
+    name: Base builder
+    description: A basic Railgun container builder container
+    maintainer: rickard@northernbytes.se
+    type: builder
+    builder: none
+    
+    container:
+        dockerfile: Dockerfile
+        files:
+            'railgun': ${RAILGUN_PACKAGE}
+            'railgun_files': ${RAILGUN_FILES}

@@ -1,0 +1,6 @@
+pyyaml
+cmdln>=1.0
+git+http://github.com/evolvIQ/python-pipe-rpc.git
+git+http://github.com/dotcloud/docker-py.git
+# boto AWS support
+

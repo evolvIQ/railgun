@@ -1,0 +1,10 @@
+django-example:
+    description: A sample Django web app with a Postgres database backend
+    namespace: example.com
+    maintainer: rickard@northernbytes.se
+    base: northernbyt.es/django
+    
+    requires:
+      - postgresql
+    
+    

@@ -1,0 +1,12 @@
+site:
+    description: Sample Vagrant/CoreOS site
+    
+    hosts:
+        coreos:
+            type: vagrant
+            url: https://github.com/coreos/coreos-vagrant.git
+            
+            #services:
+            #    rabbitmq1 : rabbitmq
+            #    rabbitmq2 : rabbitmq
+                

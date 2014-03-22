@@ -1,0 +1,5 @@
+site:
+    hosts:
+        docker:
+            type: ssh
+            host: docker

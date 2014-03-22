@@ -1,0 +1,40 @@
+#!/bin/sh
+export PYTHONPATH=/railgun
+CLEARCACHE=
+while getopts C opt; do
+  case $opt in
+    C)
+      CLEARCACHE=1
+      ;;
+    *)
+      exit 1
+      ;;
+  esac
+done
+shift $((OPTIND-1))
+export SERVICE=$1
+
+# Create the build dir. It is not saved between builds.
+BUILD_DIR=/tmp/build
+mkdir -p $BUILD_DIR
+cd $BUILD_DIR
+
+# Unpack stdin as a TAR archive
+tar xv
+
+# Get the cache dir, keyed by project and service name. Cache dir is kept, unless explicitly cleared 
+CACHE_DIR=/buildroot/cache/$(python -mrailgun.tool info -n -p $BUILD_DIR | head -n 1)
+
+if [ -n "$CLEARCACHE" ]; then
+  rm -rf $CACHE_DIR
+fi
+
+mkdir -p $CACHE_DIR
+
+echo "Compiling $BUILD_DIR $CACHE_DIR"
+if [ -f /bin/compile ]; then
+  /bin/compile $BUILD_DIR $CACHE_DIR
+fi
+echo "Building container"
+python -mrailgun.tool buildcontainer $BUILD_DIR
+echo "Done!"
